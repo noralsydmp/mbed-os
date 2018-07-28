@@ -3514,6 +3514,7 @@
         "inherits": ["EFM32GG11B820F2048GL192"],
         "device_name": "EFM32GG11B820F2048GL192",
         "device_has": ["ANALOGIN", "CRC", "EMAC", "I2C", "I2CSLAVE", "I2C_ASYNCH", "INTERRUPTIN", "LPTICKER", "PORTIN", "PORTINOUT", "PORTOUT", "PWMOUT", "RTC", "SERIAL", "SERIAL_ASYNCH", "SLEEP", "SPI", "SPISLAVE", "SPI_ASYNCH", "STDIO_MESSAGES", "USTICKER", "TRNG", "FLASH"],
+        "features": ["LWIP"],
         "forced_reset_timeout": 5,
         "config": {
             "hf_clock_src": {
@@ -4072,6 +4073,7 @@
         "extra_labels": ["Realtek", "AMEBA", "RTL8195A", "RTW_EMAC"],
         "macros": ["__RTL8195A__","CONFIG_PLATFORM_8195A","CONFIG_MBED_ENABLED","PLATFORM_CMSIS_RTOS","MBED_FAULT_HANDLER_DISABLED"],
         "supported_toolchains": ["GCC_ARM", "ARM", "IAR"],
+        "features": ["LWIP"],
         "device_has": ["ANALOGIN", "ANALOGOUT", "I2C", "I2CSLAVE", "INTERRUPTIN", "PORTIN", "PORTINOUT", "PORTOUT", "PWMOUT", "SERIAL", "SPI", "TRNG", "FLASH"],
         "post_binary_hook": {
             "function": "RTL8195ACode.binary_hook",
