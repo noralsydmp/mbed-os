@@ -94,11 +94,25 @@ public:
      */
     I2C(PinName sda, PinName scl);
 
+    virtual ~I2C();
+
     /** Set the frequency of the I2C interface
      *
      *  @param hz The bus frequency in hertz
      */
     void frequency(int hz);
+
+    /** Configure the timeout duration in microseconds for blocking transmission
+    *
+    *  @param timeout    Transmission timeout in microseconds.
+    *
+    *  @note If no timeout is set the default timeout is used.
+    *        Default timeout value is based on I2C frequency.
+    *        Byte timeout is computed as triple amount of time it would take
+    *        to send 10bit over I2C and is expressed by the formula:
+    *        byte_timeout = 3 * (1/frequency * 10 * 1000000)
+    */
+    void timeout(uint32_t timeout);
 
     /** Read from an I2C slave
      *
@@ -170,11 +184,6 @@ public:
      */
     virtual void unlock(void);
 
-    virtual ~I2C()
-    {
-        // Do nothing
-    }
-
 #if DEVICE_I2C_ASYNCH
 
     /** Start nonblocking I2C transfer.
@@ -207,11 +216,10 @@ protected:
     /** Unlock deep sleep only if it has been locked */
     void unlock_deep_sleep();
 
-    void irq_handler_asynch(void);
+    static void irq_handler_asynch(i2c_t *obj, i2c_async_event_t *event, void *ctx);
     event_callback_t _callback;
-    CThunk<I2C> _irq;
-    DMAUsage _usage;
     bool _deep_sleep_locked;
+    bool _async_transfer_ongoing;
 #endif
 #endif
 
@@ -221,7 +229,7 @@ protected:
 
     i2c_t _i2c;
     static I2C  *_owner;
-    int    _hz;
+    uint32_t _hz;
     static SingletonPtr<PlatformMutex> _mutex;
     PinName _sda;
     PinName _scl;

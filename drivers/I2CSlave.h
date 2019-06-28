@@ -22,6 +22,7 @@
 #if DEVICE_I2CSLAVE || defined(DOXYGEN_ONLY)
 
 #include "hal/i2c_api.h"
+#include "platform/NonCopyable.h"
 
 namespace mbed {
 /** \addtogroup drivers */
@@ -66,7 +67,7 @@ namespace mbed {
  * @endcode
  * @ingroup drivers
  */
-class I2CSlave {
+class I2CSlave : private NonCopyable<I2CSlave> {
 
 public:
     enum RxStatus {
@@ -83,11 +84,25 @@ public:
      */
     I2CSlave(PinName sda, PinName scl);
 
+    virtual ~I2CSlave();
+
     /** Set the frequency of the I2C interface.
      *
      *  @param hz The bus frequency in Hertz.
      */
     void frequency(int hz);
+
+    /** Configure the timeout duration in microseconds for blocking transmission
+    *
+    *  @param timeout    Transmission timeout in microseconds.
+    *
+    *  @note If no timeout is set the default timeout is used.
+    *        Default timeout value is based on I2C frequency.
+    *        Byte timeout is computed as triple amount of time it would take
+    *        to send 10bit over I2C and is expressed by the formula:
+    *        byte_timeout = 3 * (1/frequency * 10 * 1000000)
+    */
+    void timeout(uint32_t timeout);
 
     /** Check if this I2C Slave has been addressed.
      *
@@ -154,6 +169,8 @@ public:
 #if !defined(DOXYGEN_ONLY)
 
 protected:
+    PinName _sda;
+    PinName _scl;
     /* Internal i2c object identifying the resources */
     i2c_t _i2c;
 
