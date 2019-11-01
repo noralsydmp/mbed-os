@@ -34,9 +34,9 @@ typedef enum {
 } PinName;
 
 typedef enum {
-	PullNone,
-	PullUp,
-	PullDown
+    PullNone,
+    PullUp,
+    PullDown
 } PinMode;
 
 typedef enum {

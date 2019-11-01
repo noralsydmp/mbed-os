@@ -42,15 +42,31 @@ public:
     {
     }
 
-    osStatus start(mbed::Callback<void()> task) {
-      return 0;
+    osStatus start(mbed::Callback<void()> task)
+    {
+        return 0;
     }
 
-    osStatus join() {return 0;};
-    osStatus terminate(){return 0;};
-    osStatus set_priority(osPriority priority){return 0;};
-    osPriority get_priority() const{return osPriorityNormal;};
-    uint32_t flags_set(uint32_t flags){return 0;};
+    osStatus join()
+    {
+        return 0;
+    };
+    osStatus terminate()
+    {
+        return 0;
+    };
+    osStatus set_priority(osPriority priority)
+    {
+        return 0;
+    };
+    osPriority get_priority() const
+    {
+        return osPriorityNormal;
+    };
+    uint32_t flags_set(uint32_t flags)
+    {
+        return 0;
+    };
 
     /** State of the Thread */
     enum State {
@@ -75,26 +91,33 @@ public:
         Deleted,            /**< The task has been deleted or not started */
     };
 
-    State get_state() const {
-      return Ready;
+    State get_state() const
+    {
+        return Ready;
     };
-    uint32_t stack_size() const {
-      return 0;
+    uint32_t stack_size() const
+    {
+        return 0;
     };
-    uint32_t free_stack() const {
-      return 0;
+    uint32_t free_stack() const
+    {
+        return 0;
     };
-    uint32_t used_stack() const {
-      return 0;
+    uint32_t used_stack() const
+    {
+        return 0;
     };
-    uint32_t max_stack() const {
-      return 0;
+    uint32_t max_stack() const
+    {
+        return 0;
     };
-    const char *get_name() const {
-      return "";
+    const char *get_name() const
+    {
+        return "";
     };
-    osThreadId_t get_id() const {
-      return 0;
+    osThreadId_t get_id() const
+    {
+        return 0;
     };
 };
 }

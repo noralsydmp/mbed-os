@@ -846,7 +846,7 @@ int SPIFBlockDevice::_sfdp_detect_erase_types_inst_and_size(uint8_t *basic_param
                 _region_erase_types_bitfield[0] |= bitfield; // If there's no region map, set region "0" types bitfield as defualt;
             }
             tr_info("Erase Type %d - Inst: 0x%xh, Size: %d", (i_ind + 1),
-                     erase_type_inst_arr[i_ind], erase_type_size_arr[i_ind]);
+                    erase_type_inst_arr[i_ind], erase_type_size_arr[i_ind]);
             bitfield = bitfield << 1;
         }
     }

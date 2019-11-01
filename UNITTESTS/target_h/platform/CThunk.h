@@ -41,7 +41,7 @@ public:
     }
     uint32_t entry(void)
     {
-        
+
         return 0;
     }
 };
