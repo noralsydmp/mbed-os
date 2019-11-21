@@ -705,7 +705,7 @@ void test_write_deinit_init()
 
     for (int i = 0; i < 10; i++) {
         // Generate test pattern
-        for(int j = 0; j < size; j++) {
+        for (int j = 0; j < size; j++) {
             prog[j] = (uint8_t)'0' + i + j;
         }
 
